@@ -1,19 +1,19 @@
-import { QueryClient, QueryClientProvider, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { QueryClientProvider, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button';
+import { queryClient } from '@/lib/queryClient';
 
 export const Route = createLazyFileRoute('/todo')({
   component: RouteComponent,
 })
 
-const queryClient = new QueryClient();
 
 function RouteComponent() {
 
   return (
-    <QueryClientProvider client={queryClient}>
+    
       <TodoComponent />
-    </QueryClientProvider>
+  
   )
 }
 
@@ -57,7 +57,7 @@ function TodoComponent() {
           mutation.mutate("New Todo")
         }}
       >
-        Add Todo
+        Add Todo-Now
       </Button>
     </div>
   )

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '../api/supabaseClient';
+import { useDatabase } from '@/hooks/useDatabase';
 
 export const Route = createLazyFileRoute('/about')({
   component: About,
@@ -9,6 +10,9 @@ export const Route = createLazyFileRoute('/about')({
 
 function About() {
   const [countries, setCountries] = useState<any[]>([]);
+  const { data, fetchData } = useDatabase('organizations');
+  console.log(data);
+  console.log(fetchData);
 
   useEffect(() => {
     getCountries();
