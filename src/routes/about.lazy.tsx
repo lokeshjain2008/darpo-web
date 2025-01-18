@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
@@ -7,7 +8,7 @@ export const Route = createLazyFileRoute('/about')({
 })
 
 function About() {
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState<any[]>([]);
 
   useEffect(() => {
     getCountries();
@@ -16,7 +17,9 @@ function About() {
   async function getCountries() {
     const { data } = await supabase.from("organizations").select();
     console.log(data);
-    setCountries(data);
+    if (data) {
+      setCountries(data);
+    }
   }
 
   return (

@@ -26,8 +26,9 @@ const getTodos = async () => {
   ]
 }
 
-const postTodo = async (todo) => {
+const postTodo = async (todo:string) => {
   // Post to API
+  console.log(todo)
 }
 
 
@@ -53,10 +54,7 @@ function TodoComponent() {
 
       <Button
         onClick={() => {
-          mutation.mutate({
-            id: Date.now(),
-            title: 'Do Laundry',
-          })
+          mutation.mutate("New Todo")
         }}
       >
         Add Todo
