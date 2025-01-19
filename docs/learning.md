@@ -25,3 +25,9 @@ this article talks about the router with tanstack/query via suspense, loader, pe
 
 
 ### tailwind & shadcn/ui
+
+
+
+### vercel 
+routes
+// https://stackoverflow.com/a/65644138/1457016

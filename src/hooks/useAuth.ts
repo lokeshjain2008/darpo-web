@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { supabase } from '../api/supabaseClient';
-import { User } from '@supabase/supabase-js'; // Import User type from Supabase
+// import { User } from '@supabase/supabase-js'; // Import User type from Supabase
 
 export const useAuth = () => {
   const { user, setUser, clearUser } = useAuthStore();
@@ -26,6 +26,9 @@ export const useAuth = () => {
   const loginWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      // options: {
+      //   redirectTo: `https://app.darpo.in`,
+      // }
     });
     if (error) {
       console.error('Error logging in with Google:', error.message);

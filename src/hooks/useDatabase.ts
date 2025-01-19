@@ -9,7 +9,7 @@ export const useDatabase = <T extends TableName>(table: T) => {
   const queryClient = useQueryClient();
 
   const fetchData = async (filters: Partial<TableRow<T>> = {}) => {
-    let query = supabase.from<TableRow<T>>(table).select('*');
+    let query = supabase.from(table).select('*');
     for (const [key, value] of Object.entries(filters)) {
       query = query.eq(key, value);
     }
@@ -25,34 +25,34 @@ export const useDatabase = <T extends TableName>(table: T) => {
 
   const create = useMutation({
     mutationFn: async (newData: Partial<TableRow<T>>) => {
-      const { data, error } = await supabase.from<TableRow<T>>(table).insert(newData);
+      const { data, error } = await supabase.from(table).insert(newData);
       if (error) throw error;
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries([table]);
+      queryClient.invalidateQueries({ queryKey: [table] });
     },
   });
 
   const update = useMutation({
     mutationFn: async ({ id, newData }: { id: string; newData: Partial<TableRow<T>> }) => {
-      const { data, error } = await supabase.from<TableRow<T>>(table).update(newData).eq('id', id);
+      const { data, error } = await supabase.from(table).update(newData).eq('id', id);
       if (error) throw error;
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries([table]);
+      queryClient.invalidateQueries({ queryKey: [table] });
     },
   });
 
   const remove = useMutation({
     mutationFn: async (id: string) => {
-      const { data, error } = await supabase.from<TableRow<T>>(table).delete().eq('id', id);
+      const { data, error } = await supabase.from(table).delete().eq('id', id);
       if (error) throw error;
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries([table]);
+      queryClient.invalidateQueries({ queryKey: [table] });
     },
   });
 

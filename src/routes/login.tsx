@@ -1,13 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useAuth } from '../hooks/useAuth';
 import { useAuthStore } from '../store/authStore';
+import { Button } from '@/components/ui/button';
 
 export const Route = createFileRoute('/login')({
   component: Login
 })
 
 function Login() {
-  const { loginWithGoogle } = useAuth();
+  const { loginWithGoogle, logout } = useAuth();
   const user = useAuthStore((state) => state.user);
 
   return (
@@ -20,6 +21,7 @@ function Login() {
         >
           Login with Google
         </button>
+        <Button onClick={logout}> Logout</Button>
         {user && (
           <div className="mt-4 text-center">
             <p>Welcome, {user.email}</p>
