@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "supabase:types": "supabase generate-types --schema public --db-url $SUPABASE_URL --db-key $SUPABASE_KEY",
-    "supabase:type": "supabase gen types typescript --project-id jxhvvrasqxzqtcmrwisr > src/api/types.ts"
+    "supabase:type": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/api/types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

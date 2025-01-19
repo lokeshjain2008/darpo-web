@@ -53,3 +53,5 @@ git add supabase/schema.sql
 git commit -m "Add current database schema"
 git push
 ```
+
+"supabase:types": "supabase generate-types --schema public --db-url $SUPABASE_URL --db-key $SUPABASE_KEY",

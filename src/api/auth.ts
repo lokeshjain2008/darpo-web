@@ -2,9 +2,9 @@
 import { supabase } from './supabaseClient';
 
 export const signIn = async (email: string, password: string) => {
-  const { user, error } = await supabase.auth.signIn({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) throw error;
-  return user;
+  return data;
 };
 
 export const signOut = async () => {
