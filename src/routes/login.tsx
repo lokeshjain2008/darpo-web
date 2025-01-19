@@ -1,10 +1,9 @@
-import React from 'react';
 import { createFileRoute } from '@tanstack/react-router'
 import { useAuth } from '../hooks/useAuth';
 import { useAuthStore } from '../store/authStore';
 
 export const Route = createFileRoute('/login')({
-  component: Login,
+  component: Login
 })
 
 function Login() {

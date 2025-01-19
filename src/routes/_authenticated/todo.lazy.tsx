@@ -1,22 +1,18 @@
-import { QueryClientProvider, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Button } from '@/components/ui/button';
-import { queryClient } from '@/lib/queryClient';
+import { Button } from '@/components/ui/button'
 
-export const Route = createLazyFileRoute('/todo')({
+export const Route = createLazyFileRoute('/_authenticated/todo')({
   component: RouteComponent,
 })
 
-
 function RouteComponent() {
-
-  return (
-    
-      <TodoComponent />
-  
-  )
+  return <TodoComponent />
 }
-
 
 // create mock data
 const getTodos = async () => {
@@ -26,11 +22,10 @@ const getTodos = async () => {
   ]
 }
 
-const postTodo = async (todo:string) => {
+const postTodo = async (todo: string) => {
   // Post to API
   console.log(todo)
 }
-
 
 function TodoComponent() {
   // Access the client
@@ -54,7 +49,7 @@ function TodoComponent() {
 
       <Button
         onClick={() => {
-          mutation.mutate("New Todo")
+          mutation.mutate('New Todo')
         }}
       >
         Add Todo-Now

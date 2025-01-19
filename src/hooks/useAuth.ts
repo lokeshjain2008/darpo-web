@@ -41,5 +41,12 @@ export const useAuth = () => {
     }
   };
 
-  return { user, loginWithGoogle, logout };
+  const isAuthenticated = ()=> user !== null;
+
+
+  return { user, isAuthenticated, loginWithGoogle, logout };
 };
+
+
+
+export type AuthContext = ReturnType<typeof useAuth>;
