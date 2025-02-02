@@ -21,7 +21,7 @@ export const useAuth = () => {
     return () => {
       subscription?.unsubscribe();
     };
-  }, [setUser, clearUser]);
+  }, [clearUser, setUser]);
 
   const loginWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({

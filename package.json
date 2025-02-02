@@ -8,12 +8,21 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "s": "supabase",
     "supabase:types": "supabase generate-types --schema public --db-url $SUPABASE_URL --db-key $SUPABASE_KEY",
-    "supabase:type": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/api/types.ts"
+    "s:type": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > src/api/types.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "@radix-ui/react-collapsible": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.5",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.3",
+    "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-tooltip": "^1.1.7",
     "@supabase/supabase-js": "^2.47.16",
     "@tanstack/react-query": "^5.64.1",
     "@tanstack/react-router": "^1.97.1",

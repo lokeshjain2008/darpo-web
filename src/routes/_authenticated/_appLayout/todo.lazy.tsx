@@ -1,12 +1,8 @@
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 
-export const Route = createLazyFileRoute('/_authenticated/todo')({
+export const Route = createLazyFileRoute('/_authenticated/_appLayout/todo')({
   component: RouteComponent,
 })
 

@@ -9,87 +9,60 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      audit_logs: {
+        Row: {
+          action: string
+          changed_by: string | null
+          created_at: string | null
+          id: string
+          new_data: Json | null
+          old_data: Json | null
+          record_id: string
+          table_name: string
+        }
+        Insert: {
+          action: string
+          changed_by?: string | null
+          created_at?: string | null
+          id?: string
+          new_data?: Json | null
+          old_data?: Json | null
+          record_id: string
+          table_name: string
+        }
+        Update: {
+          action?: string
+          changed_by?: string | null
+          created_at?: string | null
+          id?: string
+          new_data?: Json | null
+          old_data?: Json | null
+          record_id?: string
+          table_name?: string
+        }
+        Relationships: []
+      }
       organizations: {
         Row: {
           created_at: string | null
           description: string | null
           id: string
           name: string
-          updated_at: string | null
+          updated_at: string
         }
         Insert: {
           created_at?: string | null
           description?: string | null
           id?: string
           name: string
-          updated_at?: string | null
+          updated_at?: string
         }
         Update: {
           created_at?: string | null
           description?: string | null
           id?: string
           name?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      permission_role: {
-        Row: {
-          created_at: string | null
-          permission_id: string
-          role_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          permission_id: string
-          role_id: string
-        }
-        Update: {
-          created_at?: string | null
-          permission_id?: string
-          role_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "permission_role_permission_id_fkey"
-            columns: ["permission_id"]
-            isOneToOne: false
-            referencedRelation: "permissions"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "permission_role_role_id_fkey"
-            columns: ["role_id"]
-            isOneToOne: false
-            referencedRelation: "roles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      permissions: {
-        Row: {
-          action: string
-          created_at: string | null
-          description: string | null
-          entity_type: string
-          id: string
-          updated_at: string | null
-        }
-        Insert: {
-          action: string
-          created_at?: string | null
-          description?: string | null
-          entity_type: string
-          id?: string
-          updated_at?: string | null
-        }
-        Update: {
-          action?: string
-          created_at?: string | null
-          description?: string | null
-          entity_type?: string
-          id?: string
-          updated_at?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -120,110 +93,131 @@ export type Database = {
         }
         Relationships: []
       }
-      roles: {
+      properties: {
         Row: {
-          created_at: string | null
+          address: string | null
+          created_at: string
           description: string | null
           id: string
           name: string
-          organization_id: string | null
-          updated_at: string | null
+          organization_id: string
+          updated_at: string
         }
         Insert: {
-          created_at?: string | null
+          address?: string | null
+          created_at?: string
           description?: string | null
           id?: string
           name: string
-          organization_id?: string | null
-          updated_at?: string | null
+          organization_id?: string
+          updated_at?: string
         }
         Update: {
-          created_at?: string | null
+          address?: string | null
+          created_at?: string
           description?: string | null
           id?: string
           name?: string
-          organization_id?: string | null
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "roles_organization_id_fkey"
-            columns: ["organization_id"]
-            isOneToOne: false
-            referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_app_role: {
-        Row: {
-          created_at: string | null
-          role_id: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          role_id: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          role_id?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "user_app_role_role_id_fkey"
-            columns: ["role_id"]
-            isOneToOne: false
-            referencedRelation: "roles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "user_app_role_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_organization_role: {
-        Row: {
-          created_at: string | null
-          organization_id: string
-          role_id: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          organization_id: string
-          role_id: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
           organization_id?: string
-          role_id?: string
-          user_id?: string
+          updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "user_organization_role_organization_id_fkey"
+            foreignKeyName: "properties_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      rooms: {
+        Row: {
+          created_at: string
+          floor: number | null
+          id: string
+          max_allowed: number | null
+          name: string
+          property_id: string
+          type: Database["public"]["Enums"]["room_types"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          floor?: number | null
+          id?: string
+          max_allowed?: number | null
+          name: string
+          property_id?: string
+          type: Database["public"]["Enums"]["room_types"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          floor?: number | null
+          id?: string
+          max_allowed?: number | null
+          name?: string
+          property_id?: string
+          type?: Database["public"]["Enums"]["room_types"]
+          updated_at?: string
+        }
+        Relationships: [
           {
-            foreignKeyName: "user_organization_role_role_id_fkey"
-            columns: ["role_id"]
+            foreignKeyName: "rooms_property_id_fkey"
+            columns: ["property_id"]
             isOneToOne: false
-            referencedRelation: "roles"
+            referencedRelation: "properties"
             referencedColumns: ["id"]
           },
+        ]
+      }
+      user_roles: {
+        Row: {
+          app_role: Database["public"]["Enums"]["app_role_type"] | null
+          created_at: string
+          organization_role:
+            | Database["public"]["Enums"]["organization_role_type"]
+            | null
+          property_role:
+            | Database["public"]["Enums"]["property_role_type"]
+            | null
+          scope: Database["public"]["Enums"]["role_scope_type"] | null
+          scope_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          app_role?: Database["public"]["Enums"]["app_role_type"] | null
+          created_at?: string
+          organization_role?:
+            | Database["public"]["Enums"]["organization_role_type"]
+            | null
+          property_role?:
+            | Database["public"]["Enums"]["property_role_type"]
+            | null
+          scope?: Database["public"]["Enums"]["role_scope_type"] | null
+          scope_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          app_role?: Database["public"]["Enums"]["app_role_type"] | null
+          created_at?: string
+          organization_role?:
+            | Database["public"]["Enums"]["organization_role_type"]
+            | null
+          property_role?:
+            | Database["public"]["Enums"]["property_role_type"]
+            | null
+          scope?: Database["public"]["Enums"]["role_scope_type"] | null
+          scope_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
           {
-            foreignKeyName: "user_organization_role_user_id_fkey"
+            foreignKeyName: "user_roles_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
@@ -245,9 +239,32 @@ export type Database = {
         }
         Returns: boolean
       }
+      has_role: {
+        Args: {
+          check_user_id: string
+          check_scope: Database["public"]["Enums"]["role_scope_type"]
+          check_scope_id?: string
+          check_app_roles?: Database["public"]["Enums"]["app_role_type"][]
+          check_org_roles?: Database["public"]["Enums"]["organization_role_type"][]
+          check_prop_roles?: Database["public"]["Enums"]["property_role_type"][]
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role_type: "god" | "admin" | "support"
+      organization_role_type: "owner" | "admin" | "manager"
+      property_role_type: "manager" | "desk" | "reader"
+      role_scope_type: "app" | "organization" | "property"
+      room_types:
+        | "single_bed_room"
+        | "double_ded_room"
+        | "luxury"
+        | "suite"
+        | "room"
+        | "kitchen"
+        | "gym"
+        | "multi_purpose"
     }
     CompositeTypes: {
       [_ in never]: never

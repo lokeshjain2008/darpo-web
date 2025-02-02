@@ -10,24 +10,29 @@ type RouterContext = {
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   notFoundComponent: NotFound,
-  component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{' '}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-        <Link to="/todo" className="[&.active]:font-bold">
-          Todo List
-        </Link>
-      </div>
-      <hr />
-      <Outlet />
-      <Suspense>
-        <TanStackRouterDevtools />
-      </Suspense>
-    </>
-  ),
+  component: RootComponent,
 })
+
+
+function RootComponent(){
+  // const { isAuthenticated } = Route.useRouteContext().authentication;
+  return <>
+  <div className="p-2 flex gap-2 hidden" >
+    <Link to="/" className="[&.active]:font-bold">
+      Home
+    </Link>{' '}
+    <Link to="/about" className="[&.active]:font-bold">
+      About
+    </Link>
+    <Link to="/todo" className="[&.active]:font-bold">
+      Todo List
+    </Link>
+  </div>
+  <Outlet />
+  <Suspense>
+    <TanStackRouterDevtools position='bottom-right' />
+  </Suspense>
+</>
+
+
+}
