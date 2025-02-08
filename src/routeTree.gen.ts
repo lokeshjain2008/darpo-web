@@ -26,6 +26,9 @@ const AuthenticatedAppLayoutTodoLazyImport = createFileRoute(
 const AuthenticatedAppLayoutAboutLazyImport = createFileRoute(
   '/_authenticated/_appLayout/about',
 )()
+const AuthenticatedAppLayoutOrgIndexLazyImport = createFileRoute(
+  '/_authenticated/_appLayout/org/',
+)()
 
 // Create/Update Routes
 
@@ -67,6 +70,17 @@ const AuthenticatedAppLayoutAboutLazyRoute =
     getParentRoute: () => AuthenticatedAppLayoutRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/_appLayout/about.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
+const AuthenticatedAppLayoutOrgIndexLazyRoute =
+  AuthenticatedAppLayoutOrgIndexLazyImport.update({
+    id: '/org/',
+    path: '/org/',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/_appLayout/org/index.lazy').then(
       (d) => d.Route,
     ),
   )
@@ -117,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppLayoutTodoLazyImport
       parentRoute: typeof AuthenticatedAppLayoutImport
     }
+    '/_authenticated/_appLayout/org/': {
+      id: '/_authenticated/_appLayout/org/'
+      path: '/org'
+      fullPath: '/org'
+      preLoaderRoute: typeof AuthenticatedAppLayoutOrgIndexLazyImport
+      parentRoute: typeof AuthenticatedAppLayoutImport
+    }
   }
 }
 
@@ -125,12 +146,15 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAppLayoutRouteChildren {
   AuthenticatedAppLayoutAboutLazyRoute: typeof AuthenticatedAppLayoutAboutLazyRoute
   AuthenticatedAppLayoutTodoLazyRoute: typeof AuthenticatedAppLayoutTodoLazyRoute
+  AuthenticatedAppLayoutOrgIndexLazyRoute: typeof AuthenticatedAppLayoutOrgIndexLazyRoute
 }
 
 const AuthenticatedAppLayoutRouteChildren: AuthenticatedAppLayoutRouteChildren =
   {
     AuthenticatedAppLayoutAboutLazyRoute: AuthenticatedAppLayoutAboutLazyRoute,
     AuthenticatedAppLayoutTodoLazyRoute: AuthenticatedAppLayoutTodoLazyRoute,
+    AuthenticatedAppLayoutOrgIndexLazyRoute:
+      AuthenticatedAppLayoutOrgIndexLazyRoute,
   }
 
 const AuthenticatedAppLayoutRouteWithChildren =
@@ -156,6 +180,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/about': typeof AuthenticatedAppLayoutAboutLazyRoute
   '/todo': typeof AuthenticatedAppLayoutTodoLazyRoute
+  '/org': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -164,6 +189,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/about': typeof AuthenticatedAppLayoutAboutLazyRoute
   '/todo': typeof AuthenticatedAppLayoutTodoLazyRoute
+  '/org': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
 }
 
 export interface FileRoutesById {
@@ -174,13 +200,14 @@ export interface FileRoutesById {
   '/_authenticated/_appLayout': typeof AuthenticatedAppLayoutRouteWithChildren
   '/_authenticated/_appLayout/about': typeof AuthenticatedAppLayoutAboutLazyRoute
   '/_authenticated/_appLayout/todo': typeof AuthenticatedAppLayoutTodoLazyRoute
+  '/_authenticated/_appLayout/org/': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/login' | '/about' | '/todo'
+  fullPaths: '/' | '' | '/login' | '/about' | '/todo' | '/org'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/login' | '/about' | '/todo'
+  to: '/' | '' | '/login' | '/about' | '/todo' | '/org'
   id:
     | '__root__'
     | '/'
@@ -189,6 +216,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_appLayout'
     | '/_authenticated/_appLayout/about'
     | '/_authenticated/_appLayout/todo'
+    | '/_authenticated/_appLayout/org/'
   fileRoutesById: FileRoutesById
 }
 
@@ -236,7 +264,8 @@ export const routeTree = rootRoute
       "parent": "/_authenticated",
       "children": [
         "/_authenticated/_appLayout/about",
-        "/_authenticated/_appLayout/todo"
+        "/_authenticated/_appLayout/todo",
+        "/_authenticated/_appLayout/org/"
       ]
     },
     "/_authenticated/_appLayout/about": {
@@ -245,6 +274,10 @@ export const routeTree = rootRoute
     },
     "/_authenticated/_appLayout/todo": {
       "filePath": "_authenticated/_appLayout/todo.lazy.tsx",
+      "parent": "/_authenticated/_appLayout"
+    },
+    "/_authenticated/_appLayout/org/": {
+      "filePath": "_authenticated/_appLayout/org/index.lazy.tsx",
       "parent": "/_authenticated/_appLayout"
     }
   }

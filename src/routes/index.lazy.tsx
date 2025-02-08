@@ -1,6 +1,7 @@
 import { useAuth } from '@/hooks/useAuth';
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react';
+import { Button, Input, Table, Spinner } from 'shadcn-ui';
 
 export const Route = createLazyFileRoute('/')({
   component: Index,
@@ -8,7 +9,7 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
 
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const navigate = Route.useNavigate();
 
   // todo: add a loading spinner

@@ -1,6 +1,5 @@
-import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useAuth } from '../hooks/useAuth';
-import { useAuthStore } from '../store/authStore';
 import { LoginForm } from '@/components/login-form';
 
 export const Route = createFileRoute('/login')({
@@ -9,7 +8,7 @@ export const Route = createFileRoute('/login')({
 
 function Login() {
   const { loginWithGoogle, isAuthenticated } = useAuth();
-  const user = useAuthStore((state) => state.user);
+  // const user = useAuthStore((state) => state.user);
   const navigate = useNavigate();
 
   // if user then redirect to home
