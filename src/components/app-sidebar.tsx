@@ -23,6 +23,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { Link, linkOptions } from "@tanstack/react-router"
 
 // This is sample data.
 const data = {
@@ -50,24 +51,20 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Organization",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
-      items: [
+      items: linkOptions([ // this is a helper function form tanstack/react-router, It will help in creating the link for @tanstack/react-router
         {
-          title: "History",
-          url: "#",
+          to: "/org",
+          label: "List",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
+          to: "/org/add",
+          label: "Add",
+        }, 
+      ]),
     },
     {
       title: "Models",

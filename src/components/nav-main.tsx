@@ -17,6 +17,9 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { Link, linkOptions } from "@tanstack/react-router"
+
+type linkType = typeof linkOptions;
 
 export function NavMain({
   items,
@@ -26,12 +29,8 @@ export function NavMain({
     url: string
     icon?: LucideIcon
     isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
-}) {
+    items?: linkType[]
+}}) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -56,9 +55,7 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
+                        <Link to={subItem.to}>{subItem.label}</Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
