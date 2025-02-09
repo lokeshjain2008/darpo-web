@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react"
 import {
   AudioWaveform,
@@ -23,7 +24,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { Link, linkOptions } from "@tanstack/react-router"
+import { linkOptions } from "@tanstack/react-router"
 
 // This is sample data.
 const data = {
@@ -158,7 +159,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain as unknown as any} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import { ChevronRight, type LucideIcon } from "lucide-react"
@@ -19,7 +20,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Link, linkOptions } from "@tanstack/react-router"
 
-type linkType = typeof linkOptions;
+type linkType = Parameters<typeof linkOptions>[0][];
 
 export function NavMain({
   items,
@@ -29,8 +30,8 @@ export function NavMain({
     url: string
     icon?: LucideIcon
     isActive?: boolean
-    items?: linkType[]
-}}) {
+    items?: linkType
+}[]}) {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -53,9 +54,9 @@ export function NavMain({
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
+                    <SidebarMenuSubItem key={subItem.to}>
                       <SidebarMenuSubButton asChild>
-                        <Link to={subItem.to}>{subItem.label}</Link>
+                        <Link to={subItem.to}>{(subItem as unknown as any).label}</Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

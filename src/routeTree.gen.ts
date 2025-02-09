@@ -35,6 +35,9 @@ const AuthenticatedAppLayoutOrgAddLazyImport = createFileRoute(
 const AuthenticatedAppLayoutOrgOrgIdIndexLazyImport = createFileRoute(
   '/_authenticated/_appLayout/org/$orgId/',
 )()
+const AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyImport = createFileRoute(
+  '/_authenticated/_appLayout/org/$orgId/$propertyId/',
+)()
 const AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyImport = createFileRoute(
   '/_authenticated/_appLayout/org/$orgId/property/add',
 )()
@@ -114,6 +117,17 @@ const AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute =
     import('./routes/_authenticated/_appLayout/org/$orgId/index.lazy').then(
       (d) => d.Route,
     ),
+  )
+
+const AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute =
+  AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyImport.update({
+    id: '/org/$orgId/$propertyId/',
+    path: '/org/$orgId/$propertyId/',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any).lazy(() =>
+    import(
+      './routes/_authenticated/_appLayout/org/$orgId/$propertyId/index.lazy'
+    ).then((d) => d.Route),
   )
 
 const AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute =
@@ -201,6 +215,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyImport
       parentRoute: typeof AuthenticatedAppLayoutImport
     }
+    '/_authenticated/_appLayout/org/$orgId/$propertyId/': {
+      id: '/_authenticated/_appLayout/org/$orgId/$propertyId/'
+      path: '/org/$orgId/$propertyId'
+      fullPath: '/org/$orgId/$propertyId'
+      preLoaderRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyImport
+      parentRoute: typeof AuthenticatedAppLayoutImport
+    }
   }
 }
 
@@ -213,6 +234,7 @@ interface AuthenticatedAppLayoutRouteChildren {
   AuthenticatedAppLayoutOrgIndexLazyRoute: typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
 const AuthenticatedAppLayoutRouteChildren: AuthenticatedAppLayoutRouteChildren =
@@ -227,6 +249,8 @@ const AuthenticatedAppLayoutRouteChildren: AuthenticatedAppLayoutRouteChildren =
       AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute,
     AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute:
       AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute,
+    AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute:
+      AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute,
   }
 
 const AuthenticatedAppLayoutRouteWithChildren =
@@ -256,6 +280,7 @@ export interface FileRoutesByFullPath {
   '/org': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   '/org/$orgId': typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   '/org/$orgId/property/add': typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  '/org/$orgId/$propertyId': typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -268,6 +293,7 @@ export interface FileRoutesByTo {
   '/org': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   '/org/$orgId': typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   '/org/$orgId/property/add': typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  '/org/$orgId/$propertyId': typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
 export interface FileRoutesById {
@@ -282,6 +308,7 @@ export interface FileRoutesById {
   '/_authenticated/_appLayout/org/': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   '/_authenticated/_appLayout/org/$orgId/': typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   '/_authenticated/_appLayout/org/$orgId/property/add': typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  '/_authenticated/_appLayout/org/$orgId/$propertyId/': typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -296,6 +323,7 @@ export interface FileRouteTypes {
     | '/org'
     | '/org/$orgId'
     | '/org/$orgId/property/add'
+    | '/org/$orgId/$propertyId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -307,6 +335,7 @@ export interface FileRouteTypes {
     | '/org'
     | '/org/$orgId'
     | '/org/$orgId/property/add'
+    | '/org/$orgId/$propertyId'
   id:
     | '__root__'
     | '/'
@@ -319,6 +348,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_appLayout/org/'
     | '/_authenticated/_appLayout/org/$orgId/'
     | '/_authenticated/_appLayout/org/$orgId/property/add'
+    | '/_authenticated/_appLayout/org/$orgId/$propertyId/'
   fileRoutesById: FileRoutesById
 }
 
@@ -370,7 +400,8 @@ export const routeTree = rootRoute
         "/_authenticated/_appLayout/org/add",
         "/_authenticated/_appLayout/org/",
         "/_authenticated/_appLayout/org/$orgId/",
-        "/_authenticated/_appLayout/org/$orgId/property/add"
+        "/_authenticated/_appLayout/org/$orgId/property/add",
+        "/_authenticated/_appLayout/org/$orgId/$propertyId/"
       ]
     },
     "/_authenticated/_appLayout/about": {
@@ -395,6 +426,10 @@ export const routeTree = rootRoute
     },
     "/_authenticated/_appLayout/org/$orgId/property/add": {
       "filePath": "_authenticated/_appLayout/org/$orgId/property.add.lazy.tsx",
+      "parent": "/_authenticated/_appLayout"
+    },
+    "/_authenticated/_appLayout/org/$orgId/$propertyId/": {
+      "filePath": "_authenticated/_appLayout/org/$orgId/$propertyId/index.lazy.tsx",
       "parent": "/_authenticated/_appLayout"
     }
   }

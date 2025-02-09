@@ -39,11 +39,11 @@ function OrganizationDetails() {
           <p className="text-muted-foreground">{organization?.description}</p>
           <div className="mt-4 text-sm text-muted-foreground">
             <p>
-              Created: {new Date(organization?.created_at).toLocaleDateString()}
+              Created: {new Date(organization?.created_at as string)?.toLocaleDateString()}
             </p>
             <p>
               Last Updated:{' '}
-              {new Date(organization?.updated_at).toLocaleDateString()}
+              {new Date(organization?.updated_at as string).toLocaleDateString()}
             </p>
           </div>
         </CardContent>
@@ -81,9 +81,9 @@ function OrganizationDetails() {
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm">
                       <Link
-                        to="/org/$orgId/property/$propertyId"
+                        to="/org/$orgId/$propertyId"
                         params={{
-                          orgId,
+                          orgId: orgId,
                           propertyId: property.id,
                         }}
                       >

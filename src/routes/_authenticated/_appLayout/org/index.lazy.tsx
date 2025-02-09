@@ -81,6 +81,7 @@ function OrganizationsIndex() {
   );
 }
 
-function handleSearch(event) {
+function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {   
+  console.log('searching for', event.target.value);
   // Implement search functionality
 }

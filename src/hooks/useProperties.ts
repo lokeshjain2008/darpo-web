@@ -41,7 +41,8 @@ export const useUpdateProperty = () => {
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: PropertyUpdate }) => 
       updateProperty(id, data),
-    onSuccess: (_, variables) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onSuccess: (_, _variables) => {
       queryClient.invalidateQueries({ 
         queryKey: ['properties'] 
       });
