@@ -7,4 +7,3 @@
 
 3. Read more about the topic of the @tanstack/router - https://tanstack.com/router/latest/docs/framework/react/guide/link-options
 
-

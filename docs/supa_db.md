@@ -69,6 +69,7 @@ git push
 1. [Login for react app](https://supabase.com/docs/guides/auth/quickstarts/react)
 2. [Auth| YT playlist](https://www.youtube.com/watch?v=v3Exg5YpJvE&list=PL5S4mPUpp4OvE6MLbO1xAMvKLKT1sFsHF)
 3. [RLS policies|YT](https://www.youtube.com/watch?v=hu2SQjvCXIw)
+3.1 [Advance policy](https://www.youtube.com/watch?v=PdEutzhsrws)
 4. [Postgres fn](https://www.youtube.com/watch?v=MJZCCpCYEqk)
 
 ## Auth functions 

@@ -35,20 +35,20 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "GenialInfo",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: "Darpo",
     },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
+    // {
+    //   name: "Acme Corp.",
+    //   logo: AudioWaveform,
+    //   plan: "Startup",
+    // },
+    // {
+    //   name: "Evil Corp.",
+    //   logo: Command,
+    //   plan: "Free",
+    // },
   ],
   navMain: [
     {

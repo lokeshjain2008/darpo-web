@@ -38,6 +38,9 @@ const AuthenticatedAppLayoutOrgOrgIdIndexLazyImport = createFileRoute(
 const AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyImport = createFileRoute(
   '/_authenticated/_appLayout/org/$orgId/$propertyId/',
 )()
+const AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyImport = createFileRoute(
+  '/_authenticated/_appLayout/org/$orgId/userrole/add',
+)()
 const AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyImport = createFileRoute(
   '/_authenticated/_appLayout/org/$orgId/property/add',
 )()
@@ -130,6 +133,17 @@ const AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute =
     ).then((d) => d.Route),
   )
 
+const AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute =
+  AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyImport.update({
+    id: '/org/$orgId/userrole/add',
+    path: '/org/$orgId/userrole/add',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any).lazy(() =>
+    import(
+      './routes/_authenticated/_appLayout/org/$orgId/userrole.add.lazy'
+    ).then((d) => d.Route),
+  )
+
 const AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute =
   AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyImport.update({
     id: '/org/$orgId/property/add',
@@ -215,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyImport
       parentRoute: typeof AuthenticatedAppLayoutImport
     }
+    '/_authenticated/_appLayout/org/$orgId/userrole/add': {
+      id: '/_authenticated/_appLayout/org/$orgId/userrole/add'
+      path: '/org/$orgId/userrole/add'
+      fullPath: '/org/$orgId/userrole/add'
+      preLoaderRoute: typeof AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyImport
+      parentRoute: typeof AuthenticatedAppLayoutImport
+    }
     '/_authenticated/_appLayout/org/$orgId/$propertyId/': {
       id: '/_authenticated/_appLayout/org/$orgId/$propertyId/'
       path: '/org/$orgId/$propertyId'
@@ -234,6 +255,7 @@ interface AuthenticatedAppLayoutRouteChildren {
   AuthenticatedAppLayoutOrgIndexLazyRoute: typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute
   AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute: typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
@@ -249,6 +271,8 @@ const AuthenticatedAppLayoutRouteChildren: AuthenticatedAppLayoutRouteChildren =
       AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute,
     AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute:
       AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute,
+    AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute:
+      AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute,
     AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute:
       AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute,
   }
@@ -280,6 +304,7 @@ export interface FileRoutesByFullPath {
   '/org': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   '/org/$orgId': typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   '/org/$orgId/property/add': typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  '/org/$orgId/userrole/add': typeof AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute
   '/org/$orgId/$propertyId': typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
@@ -293,6 +318,7 @@ export interface FileRoutesByTo {
   '/org': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   '/org/$orgId': typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   '/org/$orgId/property/add': typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  '/org/$orgId/userrole/add': typeof AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute
   '/org/$orgId/$propertyId': typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
@@ -308,6 +334,7 @@ export interface FileRoutesById {
   '/_authenticated/_appLayout/org/': typeof AuthenticatedAppLayoutOrgIndexLazyRoute
   '/_authenticated/_appLayout/org/$orgId/': typeof AuthenticatedAppLayoutOrgOrgIdIndexLazyRoute
   '/_authenticated/_appLayout/org/$orgId/property/add': typeof AuthenticatedAppLayoutOrgOrgIdPropertyAddLazyRoute
+  '/_authenticated/_appLayout/org/$orgId/userrole/add': typeof AuthenticatedAppLayoutOrgOrgIdUserroleAddLazyRoute
   '/_authenticated/_appLayout/org/$orgId/$propertyId/': typeof AuthenticatedAppLayoutOrgOrgIdPropertyIdIndexLazyRoute
 }
 
@@ -323,6 +350,7 @@ export interface FileRouteTypes {
     | '/org'
     | '/org/$orgId'
     | '/org/$orgId/property/add'
+    | '/org/$orgId/userrole/add'
     | '/org/$orgId/$propertyId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -335,6 +363,7 @@ export interface FileRouteTypes {
     | '/org'
     | '/org/$orgId'
     | '/org/$orgId/property/add'
+    | '/org/$orgId/userrole/add'
     | '/org/$orgId/$propertyId'
   id:
     | '__root__'
@@ -348,6 +377,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_appLayout/org/'
     | '/_authenticated/_appLayout/org/$orgId/'
     | '/_authenticated/_appLayout/org/$orgId/property/add'
+    | '/_authenticated/_appLayout/org/$orgId/userrole/add'
     | '/_authenticated/_appLayout/org/$orgId/$propertyId/'
   fileRoutesById: FileRoutesById
 }
@@ -401,6 +431,7 @@ export const routeTree = rootRoute
         "/_authenticated/_appLayout/org/",
         "/_authenticated/_appLayout/org/$orgId/",
         "/_authenticated/_appLayout/org/$orgId/property/add",
+        "/_authenticated/_appLayout/org/$orgId/userrole/add",
         "/_authenticated/_appLayout/org/$orgId/$propertyId/"
       ]
     },
@@ -426,6 +457,10 @@ export const routeTree = rootRoute
     },
     "/_authenticated/_appLayout/org/$orgId/property/add": {
       "filePath": "_authenticated/_appLayout/org/$orgId/property.add.lazy.tsx",
+      "parent": "/_authenticated/_appLayout"
+    },
+    "/_authenticated/_appLayout/org/$orgId/userrole/add": {
+      "filePath": "_authenticated/_appLayout/org/$orgId/userrole.add.lazy.tsx",
       "parent": "/_authenticated/_appLayout"
     },
     "/_authenticated/_appLayout/org/$orgId/$propertyId/": {

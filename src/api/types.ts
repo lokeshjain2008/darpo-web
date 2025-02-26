@@ -69,26 +69,32 @@ export type Database = {
       profiles: {
         Row: {
           created_at: string | null
+          email: string | null
           full_name: string | null
           id: string
           is_phone_verified: boolean | null
           phone_number: string | null
+          profile_pic: string | null
           updated_at: string | null
         }
         Insert: {
           created_at?: string | null
+          email?: string | null
           full_name?: string | null
           id: string
           is_phone_verified?: boolean | null
           phone_number?: string | null
+          profile_pic?: string | null
           updated_at?: string | null
         }
         Update: {
           created_at?: string | null
+          email?: string | null
           full_name?: string | null
           id?: string
           is_phone_verified?: boolean | null
           phone_number?: string | null
+          profile_pic?: string | null
           updated_at?: string | null
         }
         Relationships: []
@@ -176,6 +182,7 @@ export type Database = {
         Row: {
           app_role: Database["public"]["Enums"]["app_role_type"] | null
           created_at: string
+          id: string
           organization_role:
             | Database["public"]["Enums"]["organization_role_type"]
             | null
@@ -190,6 +197,7 @@ export type Database = {
         Insert: {
           app_role?: Database["public"]["Enums"]["app_role_type"] | null
           created_at?: string
+          id?: string
           organization_role?:
             | Database["public"]["Enums"]["organization_role_type"]
             | null
@@ -204,6 +212,7 @@ export type Database = {
         Update: {
           app_role?: Database["public"]["Enums"]["app_role_type"] | null
           created_at?: string
+          id?: string
           organization_role?:
             | Database["public"]["Enums"]["organization_role_type"]
             | null

@@ -7,6 +7,8 @@ this article talks about the router with tanstack/query via suspense, loader, pe
 - [tanstack/series| must watch | YT](https://www.youtube.com/playlist?list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5) & follow the github repo 
 - [tanstack/router| query| YT](https://www.youtube.com/watch?v=qOwnQJOClrw&t=268s) & follow the git_hub repo
 - [usage of zustand with query](https://medium.com/@freeyeon96/zustand-react-query-new-state-management-7aad6090af56)
+- [YT series : TanStack Router Tutorial : Dev leonardo](https://www.youtube.com/watch?v=O6dS0_IvvK0&list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5&index=8)
+- [More from the Dev leonardo :](https://www.youtube.com/playlist?list=PLOQjd5dsGSxJilh0lBofeY8Qib98kzmF5)
 
 ### @tanstack/query
 
@@ -14,6 +16,9 @@ this article talks about the router with tanstack/query via suspense, loader, pe
 
 
 ### Supabse
+
+- [learn postgres on supbase](https://www.youtube.com/watch?v=9T6tjTQ4Zo4&list=PL5S4mPUpp4Ote6F9ScnXevuOyCnvzahRV)
+- [RLS policy/deepdive](https://www.youtube.com/watch?v=PdEutzhsrws)
 
 
 ### zod & react-hook-forms
@@ -25,7 +30,7 @@ this article talks about the router with tanstack/query via suspense, loader, pe
 
 
 ### tailwind & shadcn/ui
-
+1. [create design system](https://www.youtube.com/watch?v=Gp95bKdmfok)
 
 
 ### vercel 

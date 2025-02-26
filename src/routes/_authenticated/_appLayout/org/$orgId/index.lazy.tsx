@@ -1,17 +1,12 @@
-import { createLazyFileRoute, Link } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { useOrganization } from '@/hooks/useOrganizations'
-import { useProperties } from '@/hooks/useProperties'
-import { Button } from '@/components/ui/button'
+
 import { Loader } from '@/components/loader'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { PropertiesList } from '@/components/app/Properties.list'
+import { OrgUsers } from '@/components/app/OrgUsers.list'
 
 export const Route = createLazyFileRoute(
   '/_authenticated/_appLayout/org/$orgId/',
@@ -22,15 +17,12 @@ export const Route = createLazyFileRoute(
 function OrganizationDetails() {
   const { orgId } = Route.useParams()
   const { data: organization, isLoading: orgLoading } = useOrganization(orgId)
-  const { data: properties, isLoading: propsLoading } = useProperties({
-    organizationId: orgId,
-  })
 
-  if (orgLoading || propsLoading) return <Loader />
+  if (orgLoading) return <Loader />
 
   return (
     <div className="space-y-6 p-6">
-      {/* Organization Details Card */}
+      Organization Detail:
       <Card>
         <CardHeader>
           <CardTitle>{organization?.name}</CardTitle>
@@ -49,57 +41,19 @@ function OrganizationDetails() {
         </CardContent>
       </Card>
 
-      {/* Properties Section */}
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold">Properties</h2>
-          <Button>
-            <Link to="/org/$orgId/property/add" params={{ orgId }}>
-              Add Property
-            </Link>
-          </Button>
-        </div>
+      <Tabs defaultValue="properties">
+        <TabsList>
+          <TabsTrigger value="properties">Properties</TabsTrigger>
+          <TabsTrigger value="password">Users</TabsTrigger>
+        </TabsList>
+        <TabsContent value="properties">
+          <PropertiesList orgId={orgId} />
+        </TabsContent>
+        <TabsContent value="password">
+          <OrgUsers orgId={orgId} />
+        </TabsContent>
+      </Tabs>
 
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Address</TableHead>
-              <TableHead>Created At</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {properties?.map((property) => (
-              <TableRow key={property.id}>
-                <TableCell className="font-medium">{property.name}</TableCell>
-                <TableCell>{property.address}</TableCell>
-                <TableCell>
-                  {new Date(property.created_at).toLocaleDateString()}
-                </TableCell>
-                <TableCell>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm">
-                      <Link
-                        to="/org/$orgId/$propertyId"
-                        params={{
-                          orgId: orgId,
-                          propertyId: property.id,
-                        }}
-                      >
-                        View
-                      </Link>
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Edit
-                    </Button>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
     </div>
   )
 }
