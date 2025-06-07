@@ -1,8 +1,29 @@
 // filepath: src/api/auth.ts
 import { supabase } from './supabaseClient';
+import { AUTH_CONFIG } from '@/config/auth';
 
-export const signIn = async (email: string, password: string) => {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+// Send OTP to phone number
+export const sendOTP = async (phone: string) => {
+  const formattedPhone = `${AUTH_CONFIG.PHONE.COUNTRY_CODE}${phone}`;
+  
+  const { data, error } = await supabase.auth.signInWithOtp({
+    phone: formattedPhone,
+  });
+  
+  if (error) throw error;
+  return data;
+};
+
+// Verify OTP and sign in
+export const verifyOTP = async (phone: string, token: string) => {
+  const formattedPhone = `${AUTH_CONFIG.PHONE.COUNTRY_CODE}${phone}`;
+  
+  const { data, error } = await supabase.auth.verifyOtp({
+    phone: formattedPhone,
+    token,
+    type: 'sms',
+  });
+  
   if (error) throw error;
   return data;
 };
