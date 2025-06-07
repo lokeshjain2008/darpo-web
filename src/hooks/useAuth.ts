@@ -1,10 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { supabase } from '../api/supabaseClient';
-// import { User } from '@supabase/supabase-js'; // Import User type from Supabase
+import { sendOTP, verifyOTP } from '../api/auth';
+import { AUTH_CONFIG } from '../config/auth';
 
 export const useAuth = () => {
-  const { user, setUser, clearUser } = useAuthStore();
+  const { 
+    user, 
+    setUser, 
+    clearUser,
+    isOtpSent,
+    setOtpSent,
+    otpPhone,
+    setOtpPhone,
+    isSendingOtp,
+    setSendingOtp,
+    isVerifyingOtp,
+    setVerifyingOtp
+  } = useAuthStore();
+  
+  const [resendTimer, setResendTimer] = useState(0);
 
   useEffect(() => {
     const { data: {subscription} } = supabase.auth.onAuthStateChange((event, session) => {
