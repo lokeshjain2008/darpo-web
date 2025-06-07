@@ -14,6 +14,7 @@ export const Route = createLazyFileRoute(
 
 function RouteComponent() {
   const { orgId, propertyId } = Route.useParams();
+  console.log(orgId);
   const { data: property, isLoading: propLoading } = useProperty(propertyId)
 
   if (propLoading) return <Loader />

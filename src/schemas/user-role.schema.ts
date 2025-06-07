@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import type { UserRoleInsert } from '@/types/users';
-import type { Database } from '@/api/types';
+// import type { Database } from '@/api/types';
 
-type RoleScopeType = Database['public']['Enums']['role_scope_type'];
-type AppRoleType = Database['public']['Enums']['app_role_type'];
-type OrgRoleType = Database['public']['Enums']['organization_role_type'];
-type PropRoleType = Database['public']['Enums']['property_role_type'];
+// type RoleScopeType = Database['public']['Enums']['role_scope_type'];
+// type AppRoleType = Database['public']['Enums']['app_role_type'];
+// type OrgRoleType = Database['public']['Enums']['organization_role_type'];
+// type PropRoleType = Database['public']['Enums']['property_role_type'];
 
 export const userRoleSchema = z.object({
   user_id: z.string().uuid(),
