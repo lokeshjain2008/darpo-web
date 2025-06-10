@@ -1,71 +1,108 @@
 # Project Context for GitHub Copilot
 
 ## Project Overview
-This project is to help the hotels and home stays to manage their room booking and their customers documents in digital format. 
-The application will allow hotel and home stay owners to manage their bookings, customer documents, and other related tasks efficiently.
-The goal is to create a user-friendly interface for both hotel owners and customers, enabling easy access to booking information and document management.
-# problem this project is solving
-- Manage customers/visitors document in digital format and retrive it for the goverment rules and requirements, it will store documents for 5 year as per the regulations
-- Hotel owners will be able to manager multiple properties with this app.
-- Hotel owners will grant permissions to the hotel staff as per the suitability, e.g. some will be able add other users and manage, some will only be able to do the booking and manager visitors document.
-- Once we have visitors document and assigned rooms, we will be able to communicate and manage/track their booking and create accounts too (not in focus for now).
+This project helps hotels and home stays manage room bookings and customer documents in digital format. The application enables hotel/home stay owners to efficiently manage bookings, customer documents, and related tasks. The goal is a user-friendly interface for both hotel owners and customers, with easy access to booking information and document management.
+
+### Problem This Project Is Solving
+- Manage customer/visitor documents digitally and retrieve them for government rules (store for 5 years as per regulations).
+- Allow hotel owners to manage multiple properties.
+- Role-based permissions for hotel staff (e.g., some can add/manage users, others can only book rooms and manage visitor documents).
+- Once visitor documents and rooms are assigned, enable communication, booking management, and (eventually) account creation.
 
 ## Architecture
-- **Backend**: Supabase - we are using supbase as backend, we try to use supbase for everthing e.g. database, auth, authorization and storage.
-When dealing with supbase related we need to make sure approach is correct and upto date. Make sure to document things.
-For permissions we we use RLS policies on the table and this is tied to the role based approach.
-we will be using storage for the documents keeping make sure to create the scalable fast and cost effective approach.
-Supabase is used for 
-- database 
-- REST API via the JS-sdk 
-- RLS policy for authorization and permissions
-- Authentication
-- Storage
+- **Backend:** Supabase (database, auth, authorization, storage, REST API via JS SDK, RLS for permissions)
+  - RLS policies are used for authorization and role-based access.
+  - Storage is used for document management (scalable, cost-effective approach).
+- **Frontend:**
+  1. Dashboard for internal team and hotel owners (property/user/permission management).
+  2. Separate mobile app (see below).
 
-- **Frontend**: There are 2 parts to it, 
-1. we are creating dashboard for the internal team and hotel owners for manangent of properties and users and permissions kind of things.
-2. We will create an mobile app using "React-Native" that will be used by the staff to make the visitor/user booking and document management.
-
+## Mobile Project
+- The mobile app (built with Expo React Native) is maintained in a **separate repository**.
+- Some types, schemas, and API contracts may be duplicated for consistency, but there is no direct code sharing.
+- If you update a shared type or schema, consider manually syncing the change to the mobile repo.
+- See the mobile repo’s own copilot-instructions.md for mobile-specific conventions and architecture.
 
 ## Technology Stack
-- **Web**: [Add your web tech stack here: React/Vue/Angular, etc.]
-- **Mobile**: [Add your mobile tech stack here: React Native/Flutter/etc.]
+- **Web:**
+  - React (Vite)
+  - TanStack Router (file-based routing, `@tanstack/react-router`)
+  - TanStack Query (`@tanstack/react-query`)
+  - Zustand (state management)
+  - shadcn/ui (UI components, built on Tailwind CSS)
+  - Tailwind CSS (utility-first CSS)
+  - Zod (schema validation)
+  - React Hook Form (form state/validation)
+  - Supabase JS SDK (`@supabase/supabase-js`)
+  - TypeScript
+- **Backend:** Supabase (Auth, Database, Storage, Functions, JS SDK)
+- **Other Tools:**
+  - ESLint, Prettier (linting/formatting)
+  - Vercel (deployment)
 
-- **Backend**: Supabase
-  - Authentication
-  - Database
-  - Storage
-  - Functions
-  - JS-sdk
-
-
-- **Other Tools**: [List any other significant tools like state management libraries, UI frameworks, etc.]
-
-## Key Features
-- [List the main features of your application]
-
-## Project Structure
-- [Describe your project's folder structure and organization]
+## Folder Structure
+```
+/ (root)
+  package.json           # Project dependencies and scripts
+  tailwind.config.js     # Tailwind CSS config
+  tsconfig.json          # TypeScript config
+  vite.config.ts         # Vite config
+  public/                # Static assets
+  src/
+    api/                # Supabase API functions and business logic
+    components/         # UI and app components
+    config/             # App and auth config
+    hooks/              # Custom React hooks
+    lib/                # Utilities, query client, router devtools
+    routes/             # File-based routes (TanStack Router)
+    schemas/            # Zod schemas for validation
+    store/              # Zustand stores
+    types/              # TypeScript types
+    App.tsx
+    main.tsx
+  docs/                  # Project documentation
+  supabase/              # Supabase migrations, config, schema.sql
+```
 
 ## Coding Conventions
-- [Add coding conventions, patterns, or styles you want to maintain]
+- Use clear, descriptive names for files, functions, and variables.
+- Prefer functional components and hooks for React code.
+- Keep business logic in hooks or the `api/` layer, not in UI components.
+- Use Zod for schema validation and React Hook Form for forms.
+- Use TanStack Query for data fetching/caching and TanStack Router for routing.
+- Use Zustand for state management.
+- When duplicating types or schemas for mobile, keep naming and structure consistent for easier manual syncing.
+- Use shadcn/ui for UI components and Tailwind CSS for styling.
+- Use TypeScript throughout for type safety.
+- Place all API functions in `src/api/` and use them via hooks/components.
+- Use consistent error handling and naming for API functions.
 
 ## Database Schema
-- Database schema typescript types loaded from the supabase dashboard using `yarn run s:types`.
-- schema file location : 'src/api/types.ts'
-- same is using in the hooks and API that will be shared accross the web and mobile application.
+- Database schema TypeScript types are loaded from the Supabase dashboard using `yarn run s:types` or `supabase gen types typescript`.
+- Schema file location: `src/api/types.ts`.
+- These types are used in hooks and API code, and should be manually copied to the mobile repo if shared.
 
 ## API Structure
-- [Information about API endpoints and data flow]
+- Keep API functions in `src/api/` and use them via hooks/components.
+- Use consistent naming and error handling for API functions.
+- [Add more details about API endpoints and data flow as needed.]
 
 ## Common Patterns
-- [Document any common patterns used in the codebase]
+- Use hooks for business logic and data fetching.
+- Use shadcn/ui for UI components.
+- Use Zod schemas for validation.
+- Use context or Zustand for global state.
+- [Document any other common patterns used in the codebase.]
 
 ## Testing Strategy
-- [How testing is done in the project]
+- Prefer unit tests for business logic and integration tests for API/data flows.
+- [Add more details about testing tools and approach.]
 
 ## Deployment
-- [Information about your deployment process]
+- Use Vercel or similar for web deployment.
+- [Add more details about your deployment process.]
 
 ## Additional Context
+- The web and mobile projects are maintained separately. This file is for the web project only.
+- If you add or change a shared type/schema, update the mobile repo as needed.
 - [Any other information that would help Copilot assist you better]
