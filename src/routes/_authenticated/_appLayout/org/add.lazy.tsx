@@ -1,7 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { organizationSchema, type OrganizationFormData } from '@/schemas/organization.schema';
+import { organizationSchema, type OrganizationFormData } from '@/validators/organization.schema';
 import { useCreateOrganization } from '@/hooks/useOrganizations';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

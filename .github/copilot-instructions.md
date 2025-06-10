@@ -19,6 +19,7 @@ This project helps hotels and home stays manage room bookings and customer docum
 
 ## Mobile Project
 - The mobile app (built with Expo React Native) is maintained in a **separate repository**.
+- local location "../darpo-mobile"
 - Some types, schemas, and API contracts may be duplicated for consistency, but there is no direct code sharing.
 - If you update a shared type or schema, consider manually syncing the change to the mobile repo.
 - See the mobile repo’s own copilot-instructions.md for mobile-specific conventions and architecture.
@@ -55,7 +56,8 @@ This project helps hotels and home stays manage room bookings and customer docum
     hooks/              # Custom React hooks
     lib/                # Utilities, query client, router devtools
     routes/             # File-based routes (TanStack Router)
-    schemas/            # Zod schemas for validation
+    validators/         # Zod schemas for validation
+    db/                 # Supabase db schema and client
     store/              # Zustand stores
     types/              # TypeScript types
     App.tsx
@@ -79,7 +81,8 @@ This project helps hotels and home stays manage room bookings and customer docum
 
 ## Database Schema
 - Database schema TypeScript types are loaded from the Supabase dashboard using `yarn run s:types` or `supabase gen types typescript`.
-- Schema file location: `src/api/types.ts`.
+- Schema file location: `db/schema.ts`.
+- Database is remote hosted connected via supbaseClient for the fast development.
 - These types are used in hooks and API code, and should be manually copied to the mobile repo if shared.
 
 ## API Structure
@@ -104,5 +107,5 @@ This project helps hotels and home stays manage room bookings and customer docum
 
 ## Additional Context
 - The web and mobile projects are maintained separately. This file is for the web project only.
-- If you add or change a shared type/schema, update the mobile repo as needed.
+- If you add or change a shared type/schema, update the mobile repo as needed. location "../darpo-mobile"
 - [Any other information that would help Copilot assist you better]

@@ -1,4 +1,4 @@
-import { Database } from '@/api/types';
+import { Database } from '@/db/schema';
 
 export type Room = Database['public']['Tables']['rooms']['Row'];
 export type RoomInsert = Database['public']['Tables']['rooms']['Insert'];

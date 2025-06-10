@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
-import { supabase } from '../../../api/supabaseClient'
+import { supabase } from '../../../db/supabaseClient'
 import { useDatabase } from '@/hooks/useDatabase'
 
 export const Route = createLazyFileRoute('/_authenticated/_appLayout/about')({

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useAuthStore } from '../store/authStore';
-import { supabase } from '../api/supabaseClient';
+import { supabase } from '../db/supabaseClient';
 import { sendOTP, verifyOTP } from '../api/auth';
 import { AUTH_CONFIG } from '@/config/auth';
 

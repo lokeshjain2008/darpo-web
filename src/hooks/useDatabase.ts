@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/api/supabaseClient';
-import { Database } from '@/api/types'; // Import the generated types
+import { supabase } from '@/db/supabaseClient';
+import { Database } from '@/db/schema'; // Import the generated types
 
 type TableName = keyof Database['public']['Tables'];
 type TableRow<T extends TableName> = Database['public']['Tables'][T]['Row'];

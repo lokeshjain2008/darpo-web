@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { roomSchema, type RoomFormData } from '@/schemas/room.schema';
+import { roomSchema, type RoomFormData } from '@/validators/room.schema';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {

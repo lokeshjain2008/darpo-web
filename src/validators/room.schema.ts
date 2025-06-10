@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { RoomInsert } from '@/types/rooms';
-import type { Database } from '@/api/types';
+import type { Database } from '@/db/schema';
 
 type RoomTypes = Database['public']['Enums']['room_types'];
 

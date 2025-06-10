@@ -1,7 +1,7 @@
 import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { userRoleSchema, type UserRoleFormData } from '@/schemas/user-role.schema';
+import { userRoleSchema, type UserRoleFormData } from '@/validators/user-role.schema';
 import { useAssignUserRole } from '@/hooks/useUsers';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AuthContext } from "@/hooks/useAuth";
-import { phoneSchema, otpSchema, type PhoneFormData, type OtpFormData } from "@/schemas/auth.schema";
+import { phoneSchema, otpSchema, type PhoneFormData, type OtpFormData } from "@/validators/auth.schema";
 import { AUTH_CONFIG } from "@/config/auth";
 
 type LoginProps = {

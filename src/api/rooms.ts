@@ -1,5 +1,5 @@
-import { supabase } from './supabaseClient';
-import { roomSchema } from '@/schemas/room.schema';
+import { supabase } from '../db/supabaseClient';
+import { roomSchema } from '@/validators/room.schema';
 import type { Room, RoomInsert, RoomUpdate } from '@/types/rooms';
 
 export const getRooms = async (propertyId: string) => {

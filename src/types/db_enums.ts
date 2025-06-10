@@ -1,4 +1,4 @@
-import type { Database } from '@/api/types';
+import type { Database } from '@/db/schema';
 
 export type AppRoleType = Database['public']['Enums']['app_role_type'];
 export type OrganizationRoleType = Database['public']['Enums']['organization_role_type'];

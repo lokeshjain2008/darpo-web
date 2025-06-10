@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { RoomFormData } from '@/schemas/room.schema';
+import { RoomFormData } from '@/validators/room.schema';
 import { RoomForm } from './RoomForm';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
 

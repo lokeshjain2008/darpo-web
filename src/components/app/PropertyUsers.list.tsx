@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { UserRoleFormData } from '@/schemas/user-role.schema';
+import { UserRoleFormData } from '@/validators/user-role.schema';
 import { PropertyUserRoleForm } from './PropertyUserRoleForm';
 
 interface PropertyUsersProps {

@@ -1,6 +1,6 @@
-import { supabase } from './supabaseClient';
+import { supabase } from '../db/supabaseClient';
 import type { Organization, OrganizationInsert, OrganizationUpdate } from '@/types/organizations';
-import { organizationSchema } from '@/schemas/organization.schema';
+import { organizationSchema } from '@/validators/organization.schema';
 
 export const getOrganizations = async () => {
   const { data, error } = await supabase

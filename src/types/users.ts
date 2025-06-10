@@ -1,4 +1,4 @@
-import { Database } from '@/api/types';
+import { Database } from '@/db/schema';
 
 export type Profile = Database['public']['Tables']['profiles']['Row'];
 export type UserRole = Database['public']['Tables']['user_roles']['Row'];

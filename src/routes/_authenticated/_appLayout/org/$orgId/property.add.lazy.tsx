@@ -1,7 +1,7 @@
 import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { propertySchema, type PropertyFormData } from '@/schemas/property.schema';
+import { propertySchema, type PropertyFormData } from '@/validators/property.schema';
 import { useCreateProperty } from '@/hooks/useProperties';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

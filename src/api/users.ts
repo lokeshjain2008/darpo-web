@@ -1,5 +1,5 @@
-import { supabase } from './supabaseClient';
-import { userRoleSchema } from '@/schemas/user-role.schema';
+import { supabase } from '../db/supabaseClient';
+import { userRoleSchema } from '@/validators/user-role.schema';
 import type {  UserRole, UserRoleInsert, UserWithRole } from '@/types/users';
 
 // Get users by organization

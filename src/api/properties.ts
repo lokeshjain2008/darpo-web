@@ -1,5 +1,5 @@
-import { supabase } from './supabaseClient';
-import { propertySchema } from '@/schemas/property.schema';
+import { supabase } from '../db/supabaseClient';
+import { propertySchema } from '@/validators/property.schema';
 import type { Property, PropertyInsert, PropertyUpdate } from '@/types/properties';
 
 export const getProperties = async (organizationId: string) => {

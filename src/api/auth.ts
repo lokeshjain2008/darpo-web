@@ -1,5 +1,5 @@
 // filepath: src/api/auth.ts
-import { supabase } from './supabaseClient';
+import { supabase } from '@/db/supabaseClient';
 import { AUTH_CONFIG } from '@/config/auth';
 
 // Send OTP to phone number
